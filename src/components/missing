@@ -1,0 +1,226 @@
+
+
+    const pdfDoc = await PDFDocument.load(existingPdfBytes)
+    pdfDoc.registerFontkit(fontkit)
+    const customFont = await pdfDoc.embedFont(fontBytes)
+    
+    
+    const pages = pdfDoc.getPages()
+    const firstPage = pages[0]
+    const {/*  width, */ height } = firstPage.getSize() // 841 X & 198 Y
+    
+    firstPage.drawText('MARRA TURELLI IRINA Y REBECA', {  // make funcion that reviews the length of any propoerty of cupon an throws error if excees 28!! (on alumno and periodo)
+      x: 70 ,
+      y: height / 1.55,
+      size: 11,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+
+    firstPage.drawText(`${period}`, {
+      x: 70 ,
+      y: height / 1.82,
+      size: 12,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+
+    firstPage.drawText(`10 de ${period.split(" ")[0]}`, { // first expire
+      x: 100 ,
+      y: height / 3.2,
+      size: 9.4,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+    firstPage.drawText(`20 de ${period.split(" ")[0]}`, { // 2d expire 
+      x: 100 ,
+      y: height / 4.03,
+      size: 9.4,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+    firstPage.drawText(`30 de ${period.split(" ")[0]}`, { //third expire
+      x: 100 ,
+      y: height / 5.5,
+      size: 9.4,
+      font: customFont,
+      color: grayscale(0.17)
+    }) 
+
+    let venc = "1er venc";            // first mount
+    firstPage.drawText(`$${cupons[0][venc]},00`, {
+      x: 200 ,
+      y: height / 3.2,
+      size: 9.5,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+
+    let vencTwo = "2venc";            // second mount
+    firstPage.drawText(`$${cupons[0][vencTwo]},00`, {
+      x: 200 ,
+      y: height / 4.03,
+      size:9.5,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+    let vencThree= "3er venc";            // third mount
+    firstPage.drawText(`$${cupons[0][vencThree]},00`, {
+      x: 200 ,
+      y: height / 5.5,
+      size: 9.5,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+    // second talon
+   
+   
+    firstPage.drawText('MARRA TURELLI IRINA Y REBECA', {  // make funcion that reviews the length of any propoerty of cupon an throws error if excees 28!! (on alumno and periodo)
+      x: 350 ,
+      y: height / 1.55,
+      size: 11,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+
+    firstPage.drawText(`${period}`, {
+      x: 350,
+      y: height / 1.82,
+      size: 12,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+
+    firstPage.drawText(`10 de ${period.split(" ")[0]}`, { // first expire
+      x: 380.5 ,
+      y: height / 3.2,
+      size: 9.4,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+    firstPage.drawText(`20 de ${period.split(" ")[0]}`, { // 2d expire 
+      x: 380.5 ,
+      y: height / 4.03,
+      size: 9.4,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+    firstPage.drawText(`30 de ${period.split(" ")[0]}`, { //third expire
+      x: 380.5   ,
+      y: height / 5.5,
+      size: 9.4,
+      font: customFont,
+      color: grayscale(0.17)
+    }) 
+         // first mount
+    firstPage.drawText(`$${cupons[0][venc]},00`, {
+      x: 480 ,
+      y: height / 3.2,
+      size: 9.5,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+       // second mount
+    firstPage.drawText(`$${cupons[0][vencTwo]},00`, {
+      x: 480 ,
+      y: height / 4.03,
+      size:9.5,
+      font: customFont,
+      color: grayscale(0.17)
+    })         // third mount
+    firstPage.drawText(`$${cupons[0][vencThree]},00`, {
+      x: 480 ,
+      y: height / 5.5,
+      size: 9.5,
+      font: customFont,
+      color: grayscale(0.17)
+    })
+   
+   // third talon
+    
+    
+   firstPage.drawText('MARRA TURELLI IRINA Y REBECA', {  // make funcion that reviews the length of any propoerty of cupon an throws error if excees 28!! (on alumno and periodo)
+    x: 630.5,
+    y: height / 1.55,
+    size: 11,
+    font: customFont,
+    color: grayscale(0.17)
+  })
+
+  firstPage.drawText(`${period}`, {
+    x: 630.5,
+    y: height / 1.82,
+    size: 12,
+    font: customFont,
+    color: grayscale(0.17)
+  })
+    
+   
+  firstPage.drawText(`10 de septiembre`, { // first expire
+    x: 661,
+    y: height / 3.2,
+    size: 9.4,
+    font: customFont,
+    color: grayscale(0.17)
+  })
+  firstPage.drawText(`20 de ${period.split(" ")[0]}`, { // 2d expire 
+    x: 661 ,
+    y: height / 4.03,
+    size: 9.4,
+    font: customFont,
+    color: grayscale(0.17)
+  })
+  firstPage.drawText(`30 de ${period.split(" ")[0]}`, { //third expire
+    x: 661   ,
+    y: height / 5.5,
+    size: 9.4,
+    font: customFont,
+    color: grayscale(0.17)
+  }) 
+   
+  // first mount
+  firstPage.drawText(`$${cupons[0][venc]},00`, {
+    x: 761 ,
+    y: height / 3.2,
+    size: 9.5,
+    font: customFont,
+    color: grayscale(0.17)
+  })
+  // second mount
+  firstPage.drawText(`$${cupons[0][vencTwo]},00`, {
+    x: 761 ,
+    y: height / 4.03,
+    size:9.5,
+    font: customFont,
+    color: grayscale(0.17)
+  })         // third mount
+  firstPage.drawText(`$${cupons[0][vencThree]},00`, {
+    x: 761 ,
+    y: height / 5.5,
+    size: 9.5,
+    font: customFont,
+    color: grayscale(0.17)
+  }) 
+   
+   
+const pdfTemplate = await pdfDoc.save()  // save the edited pdf template as arraybBuffer
+    
+
+
+
+
+
+
+// to check if some name length is greater than 28 and fix it
+
+// cupons.map(e => {
+//   let nombre= e.Nombre
+//   if (nombre?.length >= 27) {   // this would be usefull to test the Nombre max character (28) for each name and in case of excess, slice it.
+//     let slice = 28;       // this should be on APP component to pass the cupons with all the data processed correctly. (like the editPrice process)
+//     let checkVocals = ["A,E,I,O,U"]
+//     let checked= checkVocals.map((e)=> e.includes(nombre[slice]))
+//     checked ?  nombre =  nombre.slice(0,slice).concat("",".") : console.log(slice, "hi!")
+//   }
+
+// // something like that ..
+// })
