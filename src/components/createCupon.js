@@ -3,15 +3,13 @@ import { saveAs } from 'file-saver';
 import JSZip from "jszip";
 import fontkit from '@pdf-lib/fontkit';
 
+const zip = new JSZip();
+export const createCupon = async (pdfBytes, fontBytes, e, period) => {  // the template instance - 
 
-export const createCupon = async (pdfDoc, customFont, e, period) => {  // the template instance - 
-
-    let document = pdfDoc;
-
-    /*    const pdfDoc = await PDFDocument.load(pdfBytes)
-       pdfDoc.registerFontkit(fontkit)
-       const customFont = await pdfDoc.embedFont(fontBytes) */
-    const pages = document.getPages()
+    const pdfDoc = await PDFDocument.load(pdfBytes)
+    pdfDoc.registerFontkit(fontkit)
+    const customFont = await pdfDoc.embedFont(fontBytes)
+    const pages = pdfDoc.getPages()
     const firstPage = pages[0]
     const {/*  width, */ height } = firstPage.getSize() // 841 X & 198 Y
 
@@ -163,7 +161,7 @@ export const createCupon = async (pdfDoc, customFont, e, period) => {  // the te
     })
 
 
-    firstPage.drawText(`10 de septiembre`, { // first expire
+    firstPage.drawText(`10 de${period.split(" ")[0]}`, { // first expire
         x: 661,
         y: height / 3.2,
         size: 9.4,
@@ -208,9 +206,12 @@ export const createCupon = async (pdfDoc, customFont, e, period) => {  // the te
         font: customFont,
         color: grayscale(0.17)
     })
+    const pdfTemplate = pdfDoc.save()  // save the edited pdf template as arraybBuffer 
+        .then(res => {
+            return new Blob([res], { type: "application/pdf" });
 
-    const pdfTemplate = await document.save()  // save the edited pdf template as arraybBuffer 
-    var blob = new Blob([pdfTemplate], { type: "application/pdf" }); // converted to Blob
-    return blob
+        })
+    //  let blob = new Blob([pdfTemplate], { type: "application/pdf" }); // converted to Blob
+    return pdfTemplate
 
 }

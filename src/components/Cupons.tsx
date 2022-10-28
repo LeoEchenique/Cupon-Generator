@@ -8,17 +8,22 @@ import { createCupon } from "./createCupon";
 
 export default function Cupon({ cupons }) {
 
-  const [existingPdfBytes, setExistingPdfBytes]= useState<ArrayBuffer>()
-  const [fontBytes, setFontBytes] = useState<ArrayBuffer>()
-  
+  const [existingPdfBytes,setExistingPdfBytes]= useState({})
+  const [fontBytes, setFontBytes] = useState({})
+  const [pdfDoc, setPdfDoc]= useState({})
+  const [customFont,setCustomFont]= useState({})
   const getDocs = async () => {
     const url = '/cupon.pdf'
     const urlFont = "boldFont.ttf";
     const existingPdfBytes = await fetch(url).then(res => res.arrayBuffer())
-    setExistingPdfBytes(existingPdfBytes)
     const fontBytes = await fetch(urlFont).then(res => res.arrayBuffer());
+    setExistingPdfBytes(existingPdfBytes)
     setFontBytes(fontBytes)
-
+    const pdfDoc = await PDFDocument.load(existingPdfBytes)
+    setPdfDoc(pdfDoc)
+     pdfDoc.registerFontkit(fontkit)
+    const customFont = await pdfDoc.embedFont(fontBytes)
+    setCustomFont(customFont)
   }
 
   useEffect(() => {
@@ -30,10 +35,7 @@ export default function Cupon({ cupons }) {
   const modifyPdf = async () => {
 
     let zip = new JSZip();  // create an instance of Zip
-    const pdfDoc = await PDFDocument.load(existingPdfBytes)
-     pdfDoc.registerFontkit(fontkit)
-    const customFont = await pdfDoc.embedFont(fontBytes)
-   
+
 
     const date = new Date();
     const formatFullDate = date.toLocaleDateString("es-AR", {
@@ -45,24 +47,20 @@ export default function Cupon({ cupons }) {
 
 
     async function OpenPDF(blobs) {
-      console.log("take long..")
-     await blobs.map((blobs, i) => zip.file(`${cupons[i].Nombre}.pdf`, blobs))
-    await  zip.generateAsync({ type: "blob" }).then(content => {
+    
+      blobs.map((blobs, i) => zip.file(`${cupons[i].Nombre}.pdf`, blobs))
+      zip.generateAsync({ type: "blob" }).then(content => {
+   
         saveAs(content, `Cupones.zip`);
       });
 
     }
 
+
    
-    let half = cupons.slice(0,30)
-    console.log(half)
-    let res = await half.map(async (e) => {
-   //   console.log(pdfDoc, customFont, e, period, "all ")
-   await createCupon( pdfDoc, customFont,  e, period)
-      
-    }); 
-   
-     Promise.all(res).then(async (res) =>  OpenPDF(res))
+    let res =  cupons.map(async (e) =>  createCupon( existingPdfBytes, fontBytes,  e, period)); 
+
+     Promise.all(res).then(async (res) =>   OpenPDF(res))
     
   }
 
