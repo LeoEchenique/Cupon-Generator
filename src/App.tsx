@@ -3,8 +3,8 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import Cupon from "./components/Cupons";
 function App() {
-  
-  const [data, setData] = useState([]); 
+
+  const [data, setData] = useState([]);   
   const [cupons, setCupons] = useState([]);
   const readExcel = (file: any) => {
     const fileReaded: any = new Promise((resolve, reject) => {
