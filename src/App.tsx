@@ -4,8 +4,21 @@ import { useEffect, useState } from "react";
 import Cupon from "./components/Cupons";
 function App() {
 
-  const [data, setData] = useState([]);   
-  const [cupons, setCupons] = useState([]);
+  interface cupons{
+    cupons: Icupon[];
+  }
+  
+  interface Icupon {
+    nombre: string;
+    primerVencimiento:number | string ;
+    segundoVencimiento:number |string ;
+    tercerVencimiento:  number | string;
+  }
+ 
+  const [data, setData] = useState<Icupon[]>([]);   
+  const [cupons, setCupons] = useState<Icupon[]>([]);
+
+  
   const readExcel = (file: any) => {
     const fileReaded: any = new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -22,55 +35,74 @@ function App() {
       };
       fileReader.onerror = (err) => reject(err);
     });
-    fileReaded.then((data: any) => setData(data)); // arr of items
+    
+    fileReaded.then((data: []) => {
+   
+  
+      let cupones: Icupon[]= data.map(e=> {
+        let obj: Icupon = {
+          nombre: e[`Nombre`],
+          primerVencimiento: e["1er venc"], // DOT NOTATION NOT USEFUL ON TYPESCRIPT APARENTLY.
+          segundoVencimiento: e["2venc"],
+          tercerVencimiento: e["3er venc"]
+        }
+        return obj
+      })
+     
+
+      
+
+      setData(cupones)
+    }); // arr of items
     
   };
-  
+
   useEffect(() => {
-    data.length && console.log(data, "here") // && function to map and create sub-component in pdf view
+ 
 
     if (data.length) {
-      //  if cupons.venc has length of 5 (i.e: 50000) needs to be converted to string as "50.000"
 
-  const editPrice = (str) => {
+      //  if cupons.venc has length of 5 (i.e: 50000) needs to be converted to string as "50.000"
+    const editPrice = (str: string) => {
     let slice = str.slice(0, 2).concat(".")
     return slice.concat(str.slice(2))
   }
-  
+    // we can also have a function to check correct spelling names -> need a database to compare.
+    // later need a feature to ADD a name on the list
 
-    var cuponsToDisplay= data.map(e => {
-      let vencOne = "1er venc";
-      let vencTwo= "2venc"
-      let vencThree = "3er venc";
+      var cuponsToDisplay: Icupon[] = data.map((e) => {    // this should be Object.keys to have any name to edit correctly (to not depend on human typed errors )
 
-      let oneCuote = e[vencOne].toString();
-      let twoCuote = e[vencTwo].toString();
-      let threeCuote = e[vencThree].toString();
+
+      let oneCuote = e.primerVencimiento.toString();
+      let twoCuote = e.segundoVencimiento.toString();
+      let threeCuote = e.tercerVencimiento.toString();
       
       if (oneCuote.length === 5) {
         return {
           ...e,
-          [`${vencOne}`]: editPrice(oneCuote),
-          [`${vencTwo}`]: editPrice(twoCuote),
-          [`${vencThree}`]: editPrice(threeCuote)
+         primerVencimiento: editPrice(oneCuote),
+        segundoVencimiento: editPrice(twoCuote),
+        tercerVencimiento: editPrice(threeCuote)
         }
       }
       return e
     })
-      setCupons(cuponsToDisplay)
-    // console.log(cuponsToDisplay, "RES TOSRING")
+     setCupons(cuponsToDisplay)
+
 
       
     } 
   }, [data])
-  
+  if (cupons.length) {
+    console.log("cupons,", cupons)
+  }
   return (
     <div className="App">
       <input type="file" onChange={(e: any) => readExcel(e.target.files[0])} />
-      {/* mapping the arr to make Cupon/s in pdf format because u dont want to display every single one */}
-      <Cupon cupons={cupons} />
+     <Cupon cupons={cupons} />
     </div>
   );
 }
+
 
 export default App;

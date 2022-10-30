@@ -9,7 +9,7 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
     const firstPage = pages[0]
     const { height } = firstPage.getSize() // 841 X & 198 Y
 
-    firstPage.drawText(`${e.Nombre}`, {  // make funcion that reviews the length of any propoerty of cupon an throws error if excees 28!! (on alumno and periodo)
+    firstPage.drawText(`${e.nombre}`, {  // make funcion that reviews the length of any propoerty of cupon an throws error if excees 28!! (on alumno and periodo)
         x: 70,
         y: height / 1.55,
         size: 12,
@@ -47,8 +47,8 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
         color: grayscale(0.17)
     })
 
-    let venc = "1er venc";            // first mount
-    firstPage.drawText(`$${e[venc]},00`, {
+
+    firstPage.drawText(`$${e.primerVencimiento},00`, {
         x: 200,
         y: height / 3.2,
         size: 11,
@@ -56,16 +56,14 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
         color: grayscale(0.17)
     })
 
-    let vencTwo = "2venc";            // second mount
-    firstPage.drawText(`$${e[vencTwo]},00`, {
+    firstPage.drawText(`$${e.segundoVencimiento},00`, {
         x: 200,
         y: height / 4.03,
         size: 11,
         font: customFont,
         color: grayscale(0.17)
     })
-    let vencThree = "3er venc";            // third mount
-    firstPage.drawText(`$${e[vencThree]},00`, {
+    firstPage.drawText(`$${e.tercerVencimiento},00`, {
         x: 200,
         y: height / 5.5,
         size: 11,
@@ -75,7 +73,7 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
     // second talon
 
 
-    firstPage.drawText(`${e.Nombre}`, {  // make funcion that reviews the length of any propoerty of cupon an throws error if excees 28!! (on alumno and periodo)
+    firstPage.drawText(`${e.nombre}`, {  // make funcion that reviews the length of any propoerty of cupon an throws error if excees 28!! (on alumno and periodo)
         x: 350,
         y: height / 1.55,
         size: 12,
@@ -113,7 +111,7 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
         color: grayscale(0.17)
     })
     // first mount
-    firstPage.drawText(`$${e[venc]},00`, {
+    firstPage.drawText(`$${e.primerVencimiento},00`, {
         x: 480,
         y: height / 3.2,
         size: 11,
@@ -121,14 +119,14 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
         color: grayscale(0.17)
     })
     // second mount
-    firstPage.drawText(`$${e[vencTwo]},00`, {
+    firstPage.drawText(`$${e.segundoVencimiento},00`, {
         x: 480,
         y: height / 4.03,
         size: 11,
         font: customFont,
         color: grayscale(0.17)
     })         // third mount
-    firstPage.drawText(`$${e[vencThree]},00`, {
+    firstPage.drawText(`$${e.tercerVencimiento},00`, {
         x: 480,
         y: height / 5.5,
         size: 11,
@@ -137,7 +135,7 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
     })
 
     // third talon
-    firstPage.drawText(`${e.Nombre}`, {  // make funcion that reviews the length of any propoerty of cupon an throws error if excees 28!! (on alumno and periodo)
+    firstPage.drawText(`${e.nombre}`, {  // make funcion that reviews the length of any propoerty of cupon an throws error if excees 28!! (on alumno and periodo)
         x: 630.5,
         y: height / 1.55,
         size: 12,
@@ -177,7 +175,7 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
     })
 
     // first mount
-    firstPage.drawText(`$${e[venc]},00`, {
+    firstPage.drawText(`$${e.primerVencimiento},00`, {
         x: 761,
         y: height / 3.2,
         size: 11,
@@ -185,14 +183,14 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
         color: grayscale(0.17)
     })
     // second mount
-    firstPage.drawText(`$${e[vencTwo]},00`, {
+    firstPage.drawText(`$${e.segundoVencimiento},00`, {
         x: 761,
         y: height / 4.03,
         size: 11,
         font: customFont,
         color: grayscale(0.17)
     })         // third mount
-    firstPage.drawText(`$${e[vencThree]},00`, {
+    firstPage.drawText(`$${e.tercerVencimiento},00`, {
         x: 761,
         y: height / 5.5,
         size: 11,
