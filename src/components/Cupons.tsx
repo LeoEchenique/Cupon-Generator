@@ -58,7 +58,7 @@ export default function Cupon( {cupons}: cupons  ) {
     return (
         <div>
         <button onClick={()=>modifyPdf(period)}> save</button>
-       
+        {loader? <h1>Cargandoooo</h1> : null}
         </div>
     )
 }
