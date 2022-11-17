@@ -8,6 +8,13 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
     const firstPage = pages[0]
     const { height } = firstPage.getSize() // 841 X & 198 Y
 
+    let month = period.split(" ")[0];
+    let day1 = "10 de" + " ".concat(month);
+    let day2 = "20 de" + " ".concat(month);
+    let day3 = "30 de" + " ".concat(month);
+
+    if (period.includes("Febrero")) day3 = "28 de" + " ".concat(month);
+
     firstPage.drawText(`${e.nombre}`, {  // make funcion that reviews the length of any propoerty of cupon an throws error if excees 28!! (on alumno and periodo)
         x: 70,
         y: height / 1.55,
@@ -22,21 +29,21 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
         font: customFont,
         color: grayscale(0.17)
     })
-    firstPage.drawText(`10 de ${period.split(" ")[0]}`, { // first expire
+    firstPage.drawText(day1, { // first expire
         x: 100,
         y: height / 3.2,
         size: 11,
         font: customFont,
         color: grayscale(0.17)
     })
-    firstPage.drawText(`20 de ${period.split(" ")[0]}`, { // 2d expire 
+    firstPage.drawText(day2, { // 2d expire 
         x: 100,
         y: height / 4.03,
         size: 11,
         font: customFont,
         color: grayscale(0.17)
     })
-    firstPage.drawText(`30 de ${period.split(" ")[0]}`, { //third expire
+    firstPage.drawText(day3, { //third expire
         x: 100,
         y: height / 5.5,
         size: 11,
@@ -79,21 +86,21 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
         font: customFont,
         color: grayscale(0.17)
     })
-    firstPage.drawText(`10 de ${period.split(" ")[0]}`, { // first expire
+    firstPage.drawText(day1, { // first expire
         x: 380.5,
         y: height / 3.2,
         size: 11,
         font: customFont,
         color: grayscale(0.17)
     })
-    firstPage.drawText(`20 de ${period.split(" ")[0]}`, { // 2d expire 
+    firstPage.drawText(day2, { // 2d expire 
         x: 380.5,
         y: height / 4.03,
         size: 11,
         font: customFont,
         color: grayscale(0.17)
     })
-    firstPage.drawText(`30 de ${period.split(" ")[0]}`, { //third expire
+    firstPage.drawText(day3, { //third expire
         x: 380.5,
         y: height / 5.5,
         size: 11,
@@ -138,21 +145,21 @@ export const createCupon = async (pdfBytes, e, period) => {  // the template ins
         font: customFont,
         color: grayscale(0.17)
     })
-    firstPage.drawText(`10 de ${period.split(" ")[0]}`, { // first expire
+    firstPage.drawText(day1, { // first expire
         x: 661,
         y: height / 3.2,
         size: 11,
         font: customFont,
         color: grayscale(0.17)
     })
-    firstPage.drawText(`20 de ${period.split(" ")[0]}`, { // 2d expire 
+    firstPage.drawText(day2, { // 2d expire 
         x: 661,
         y: height / 4.03,
         size: 11,
         font: customFont,
         color: grayscale(0.17)
     })
-    firstPage.drawText(`30 de ${period.split(" ")[0]}`, { //third expire
+    firstPage.drawText(day3, { //third expire
         x: 661,
         y: height / 5.5,
         size: 11,

@@ -3,7 +3,7 @@ import logo from "../assets/logo.png"
 const About = () => {
   return (
     <div className="bg-zinc-800   h-max sm:h-[100vh] flex md:flex-row flex-col items-start md:justify-between flex-wrap">
-      <div className="border-2 mt-6 md:ml-12 md:w-[35vw]  h-max">
+      <div className="border-2 mt-6 md:ml-12 md:w-[35vw] xl:h-96  h-max">
         <h2 className="text-white text-xl ml-6">
           Para utilizar la aplicación debes:
         </h2>
@@ -30,6 +30,9 @@ const About = () => {
           <li className="text-white text-xl mt-6 list-disc">
             No se puede generar un pdf a partir de un archivo diferente del
             formato Excel (.xlsx)
+          </li>
+          <li className="text-white text-xl mt-6 list-disc">
+           A pedido: se genera la fecha UN MES POSTERIOR al actual <i>(si estamos en enero, los cupones salen con fecha de febrero)</i>
           </li>
           <li className="text-white text-xl mt-6 list-disc">
             Para versiones antiguas de archivos Excel <i>puede no funcionar</i>

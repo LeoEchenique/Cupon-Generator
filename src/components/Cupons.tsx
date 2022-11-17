@@ -37,17 +37,20 @@ export default function Cupon( {cupons}: cupons  ) {
   },[])
 
   const date = new Date();
+  date.setMonth(date.getMonth() + 1); // one month ahead
+
   const formatFullDate = date.toLocaleDateString("es-AR", {
     year: "numeric",
     month: "long",
   });
-
-  let period: string = formatFullDate.replace(formatFullDate[0], formatFullDate[0].toLocaleUpperCase())
+  
+  let period: string = formatFullDate.replace(formatFullDate[0], formatFullDate[0].toLocaleUpperCase());
 
   const modifyPdf = async (period: string) => { 
+   
     if (!cupons.length) return Swal.fire("El archivo no se cargó o es inválido", undefined, "error");
     setLoader(true)
-    let res =  cupons.map(async (e) =>  createCupon( existingPdfBytes, e, period)); 
+    let res =  cupons.map(async (e) =>  createCupon( existingPdfBytes, e, "Febrero 2022")); 
     Promise.all(res).then(async (res) => OpenPDF(res))
   }
 

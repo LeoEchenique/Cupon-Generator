@@ -15,7 +15,6 @@ function App() {
   const [data, setData] = useState<Icupon[]>([]);
   const [cupons, setCupons] = useState<Icupon[]>([]);
 
-
   const normalize = (ws: any) => {
     ws.A1 = {
       ...ws.A1,
@@ -92,7 +91,7 @@ function App() {
     }
   }, [data]);
   return (
-    <div className="App bg-zinc-800 w-[100vw]">
+    <div className="App bg-zinc-800 w-[99vw]">
       <Nav />
       <div className=" h-[100vh] flex flex-col items-center justify-center -mt-20">
         <div className="h-1/2 ">
