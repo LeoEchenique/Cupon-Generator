@@ -92,7 +92,7 @@ function App() {
     }
   }, [data]);
   return (
-    <div className="App bg-zinc-800">
+    <div className="App bg-zinc-800 w-[100vw]">
       <Nav />
       <div className=" h-[100vh] flex flex-col items-center justify-center -mt-20">
         <div className="h-1/2 ">
@@ -101,7 +101,7 @@ function App() {
           </div>
           <input
             type="file"
-            className="border-4 border-dotted border-gray-100  md:h-20 h-40 px-10 py-32 md:p-40 md:pt-1/2 text-white bg-zinc-600"
+            className="border-4 border-dotted border-gray-100 h-1/2  md:h-20 h-40 px-10 py-32 md:p-40 md:pt-1/2 text-white bg-zinc-600"
             onChange={(e: any) => readExcel(e.target.files[0])}
             onDrop={(e:any)=> readExcel(e.target.files[0])}
           />

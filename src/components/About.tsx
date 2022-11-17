@@ -2,7 +2,7 @@ import logo from "../assets/logo.png"
 
 const About = () => {
   return (
-    <div className="bg-zinc-800 h-[100vh] flex md:flex-row flex-col items-start md:justify-between flex-wrap">
+    <div className="bg-zinc-800   h-max sm:h-[100vh] flex md:flex-row flex-col items-start md:justify-between flex-wrap">
       <div className="border-2 mt-6 md:ml-12 md:w-[35vw]  h-max">
         <h2 className="text-white text-xl ml-6">
           Para utilizar la aplicación debes:
@@ -24,7 +24,7 @@ const About = () => {
           <div className="xl:block hidden">
               <img src={logo} className="w-32 h-48 md:ml-20 ml-6  rounded-lg object-contain min-h-0" alt="Santa_ines_logo" />
           </div>
-      <div className="border-2 md:mr-12 md:mt-6 md:ml-12 md:w-[35vw] mt-20 md:h-max w-[94.5vw]">
+      <div className="border-2 md:mr-12 md:mt-6 md:ml-12 md:w-[35vw] mt-20 md:h-max w-[99vw] pr-8">
         <h2 className="text-white text-xl ml-6">A tener en cuenta:</h2>
         <ol className="ml-16">
           <li className="text-white text-xl mt-6 list-disc">

@@ -45,7 +45,7 @@ export default function Cupon( {cupons}: cupons  ) {
   let period: string = formatFullDate.replace(formatFullDate[0], formatFullDate[0].toLocaleUpperCase())
 
   const modifyPdf = async (period: string) => { 
-    if (!cupons.length) return Swal.fire("El archivo no se subió, arrastra o busca de nuevo!", undefined, "error");
+    if (!cupons.length) return Swal.fire("El archivo no se cargó o es inválido", undefined, "error");
     setLoader(true)
     let res =  cupons.map(async (e) =>  createCupon( existingPdfBytes, e, period)); 
     Promise.all(res).then(async (res) => OpenPDF(res))
@@ -63,7 +63,7 @@ export default function Cupon( {cupons}: cupons  ) {
   }
  
     return (
-        <div className="md:-mt-10 -mt-20">
+        <div className="md:-mt-10 sm:-mt-20 h-[120px] ">
         <button className="bg-amber-800 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded" onClick={()=>modifyPdf(period)}> save</button>
         <BounceLoader
           loading={loader}
