@@ -2,6 +2,8 @@ import { useEffect, useState} from "react";
 import { saveAs } from 'file-saver';
 import JSZip from "jszip";
 import { createCupon } from "./createCupon";
+import Swal from 'sweetalert2';
+import BounceLoader from "react-spinners/BounceLoader";
 
 interface cupons{
   cupons: Icupon[]
@@ -17,6 +19,10 @@ export default function Cupon( {cupons}: cupons  ) {
   const [loader, setLoader]=useState(false)
   const [existingPdfBytes, setExistingPdfBytes] = useState({})
 
+  const override: {} = {
+    marginTop: "-20rem",
+  };
+
   let zip = new JSZip();  // create an instance of Zip
 
   const getDocs = async () => {
@@ -26,7 +32,7 @@ export default function Cupon( {cupons}: cupons  ) {
   }
 
   useEffect(() => {
-    getDocs()
+      getDocs()    
     
   },[])
 
@@ -39,10 +45,10 @@ export default function Cupon( {cupons}: cupons  ) {
   let period: string = formatFullDate.replace(formatFullDate[0], formatFullDate[0].toLocaleUpperCase())
 
   const modifyPdf = async (period: string) => { 
-
+    if (!cupons.length) return Swal.fire("El archivo no se subió, arrastra o busca de nuevo!", undefined, "error");
     setLoader(true)
     let res =  cupons.map(async (e) =>  createCupon( existingPdfBytes, e, period)); 
-    Promise.all(res).then(async (res) =>   OpenPDF(res))
+    Promise.all(res).then(async (res) => OpenPDF(res))
   }
 
   const OpenPDF= async (blobs: Blob[]) => {
@@ -51,14 +57,22 @@ export default function Cupon( {cupons}: cupons  ) {
     zip.generateAsync({ type: "blob" }).then(content => {
       setLoader(false)
       saveAs(content, `Cupones.zip`);  // download all
+      Swal.fire("Está comenzando tu descarga", undefined, "success")
     });
 
   }
  
     return (
-        <div>
-        <button onClick={()=>modifyPdf(period)}> save</button>
-        {loader? <h1>Cargandoooo</h1> : null}
+        <div className="md:-mt-10 -mt-20">
+        <button className="bg-amber-800 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded" onClick={()=>modifyPdf(period)}> save</button>
+        <BounceLoader
+          loading={loader}
+          color="#ffffff"
+          cssOverride={override}
+          size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
         </div>
     )
 }
