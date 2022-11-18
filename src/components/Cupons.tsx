@@ -50,7 +50,7 @@ export default function Cupon( {cupons}: cupons  ) {
    
     if (!cupons.length) return Swal.fire("El archivo no se cargó o es inválido", undefined, "error");
     setLoader(true)
-    let res =  cupons.map(async (e) =>  createCupon( existingPdfBytes, e, "Febrero 2022")); 
+    let res =  cupons.map(async (e) =>  createCupon( existingPdfBytes, e, period)); 
     Promise.all(res).then(async (res) => OpenPDF(res))
   }
 
