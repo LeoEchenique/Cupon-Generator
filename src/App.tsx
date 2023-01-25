@@ -73,7 +73,10 @@ function App() {
         let slice = str.slice(0, 2).concat(".");
         return slice.concat(str.slice(2));
       };
-      let cuponsToDisplay: Icupon[] = data.map((e) => {
+     let cuponsToDisplay: Icupon[] = data.map((e) => {
+       if(!e.primerVencimiento) e.primerVencimiento= 0;
+       if(!e.segundoVencimiento) e.segundoVencimiento=0;
+       if(!e.tercerVencimiento) e.tercerVencimiento=0;
         let oneCuote = e.primerVencimiento.toString();
         let twoCuote = e.segundoVencimiento.toString();
         let threeCuote = e.tercerVencimiento.toString();
@@ -87,7 +90,7 @@ function App() {
         }
         return e;
       });
-      setCupons(cuponsToDisplay);
+      setCupons(cuponsToDisplay); 
     }
   }, [data]);
   return (
