@@ -66,7 +66,7 @@ export default function Cupon( {cupons}: cupons  ) {
     return (
         <div>
         <button className="bg-amber-800 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded mr-6" onClick={()=>modifyPdf(period)}> Generar Cupón</button>
-        <select name="" id="" onChange={(e)=>{
+        <select className=" border border-gray-300 rounded-full h-10 pl-5 pr-10 g-amber-800 hover:border-gray-400 focus:outline-none  " name="" id="" onChange={(e)=>{
           if(e.target.value === "true"){
              setIsDateAhead(true)
           }
