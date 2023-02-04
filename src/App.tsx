@@ -35,7 +35,7 @@ function App() {
     return ws;
   };
 
-  const readExcel = (file: any) => {
+/*   const readExcel = (file: any) => {
     if (file.name.includes("xlsx") || file.type.includes("xml")) {
       const fileReaded: any = new Promise((resolve, reject) => {
         const fileReader = new FileReader();
@@ -66,7 +66,7 @@ function App() {
     } else {
       Swal.fire("Ups! El archivo ingresado es inválido", undefined, "error")
     }
-  };
+  }; */
   useEffect(() => {
     if (data.length) {
       const editPrice = (str: string) => {
