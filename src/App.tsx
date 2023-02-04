@@ -97,18 +97,7 @@ function App() {
     <div className="App bg-zinc-800 w-[99vw]">
       <Nav />
       <div className=" h-[100vh] mt-12  flex flex-col items-center justify-start ">
-        <div className="h-2/4 mb-6 flex flex-col items-center justify-center" >
-          <div className="h-10 flex items-center justify-center">
-            <p className="text-white text-lg mb-12">Arrastra o busca tu archivo <b>EXCEL</b></p>
-          </div>
-          <input
-            type="file"
-            className=" border-4 border-dotted border-gray-100 h-1/2  md: h-20 h-40 px-10 py-32 md:p-40 md:pt-1/2 text-white bg-zinc-600  "
-            onChange={(e: any) => readExcel(e.target.files[0])}
-            onDrop={(e:any)=> readExcel(e.target.files[0])}
-          />
-          
-        </div>
+        
         <div className="" >
         <Cupon cupons={cupons} />
         </div>
