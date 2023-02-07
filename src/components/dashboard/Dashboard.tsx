@@ -111,7 +111,7 @@ const readExcel = (file: any) => {
     <div className="App bg-zinc-800 w-[99vw]">
       <Nav token= {token} />
       <div className=" h-[100vh] mt-12  flex flex-col items-center justify-start ">
-        <div className="h-2/4 md:h-auto mb-6 flex flex-col items-center justify-center" >
+        <div className="h-2/4 md:h-auto xl:mt-20 mb-6 flex flex-col items-center justify-center" >
           <div className="h-10 flex items-center justify-center">
             <p className="text-white text-lg mb-12">Arrastra o busca tu archivo <b>EXCEL</b></p>
           </div>

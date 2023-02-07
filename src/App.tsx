@@ -24,12 +24,11 @@ useEffect(()=>{
   auth.signOut();
 },[])
 
- const logUser= async ( user: User)=>{
- let password= user.password;
- let username= user.username;   
-  const access= await checkUser(auth, username, password); 
-  if(Array.isArray(access)) return setError("text-red-400") // if includes, means that there's some errors that needs to be handle by a controller form and display error/colors on the component
- 
+ const logUser= async ( {username, password}: User)=>{
+  
+  if(!username || !password) return setError("Ingrese las credenciales")
+   const access= await checkUser(auth, username, password); 
+  if(Array.isArray(access)) return setError("Datos ingresados incorrectos") 
   navigate(`inicio/${access}`)
   }
 
@@ -52,7 +51,7 @@ const handleChange= (e:  React.ChangeEvent<HTMLInputElement>)=>{
               <label htmlFor="username" >Usuario</label>
              <input onChange={(e)=> handleChange(e)} type="text" name="username" className="border text-black border-gray-300 rounded-full h-10 pl-5 pr-10 bg-zinc-400  focus:outline-none" />
             </div>
-            {error ? <p className={`${error}`}> Algunos datos ingresados son incorrectos </p> : null}
+            {error ? <p className="text-red-400"> {error} </p> : null}
             <div className="flex flex-col gap-6">
               <label htmlFor="password" >Contraseña</label>
               <input onChange={(e)=> handleChange(e)} type="password" name="password" className="border text-black border-gray-300 rounded-full h-10 pl-5 pr-10 bg-zinc-400  focus:outline-none" />
