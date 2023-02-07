@@ -44,7 +44,7 @@ const handleChange= (e:  React.ChangeEvent<HTMLInputElement>)=>{
     <div className="App bg-zinc-800 w-[99vw] ">
     <Nav token={false}/>
     <div className="h-[100vh] mt-12  flex flex-col items-center justify-start">
-       <div className="h-3/6 w-1/3 mt-16 max-md:mt-0  max-md:w-3/4 max-md:h-96 flex flex-col items-center justify-center gap-6 p-2 py-4 bg-zinc-600 border-4 text-white border rounded-lg">
+       <div className="md:min-h-min w-1/3 mt-16 max-md:mt-0  max-md:w-3/4 max-md:h-96 flex flex-col items-center justify-center gap-6 p-2 py-4 bg-zinc-600 border-4 text-white border rounded-lg">
             <h1 className="text-2xl  mb-10">Inicia sesión para continuar</h1>
           <div className=" mb-8 h-60 flex flex-col items-center justify-around">
             <div className="flex flex-col gap-6">
