@@ -34,7 +34,20 @@ function App() {
     };
     return ws;
   };
+  
+const modal =async ()=> await Swal.fire({
+  title: "Atención",
+  text: 'Próximamente se ingresará únicamente con una cuenta',
+  icon: "info",
+  timer: 2500,
+  iconColor: "#D97706"
+})
 
+useEffect(()=>{
+  modal()
+},[])
+
+useEffect(()=>{},[]);
   const readExcel = (file: any) => {
     if (file.name.includes("xlsx") || file.type.includes("xml")) {
       const fileReaded: any = new Promise((resolve, reject) => {
