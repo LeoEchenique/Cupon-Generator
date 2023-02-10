@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-
+import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -9,6 +9,7 @@ const firebaseConfig = {
   storageBucket: "santa-ines-jard.appspot.com",
   messagingSenderId: "145381176859",
   appId: "1:145381176859:web:f9b5c033031f9dd3c22abe",
+  measurementId: "G-QQDSMM8JRT",
 };
 
 // Initialize Firebase
@@ -16,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
-
+const analytics = getAnalytics(app);
 export const checkUser = async (auth, email, password) => {
   return await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
