@@ -17,7 +17,7 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
-const analytics = getAnalytics(app);
+getAnalytics(app);
 export const checkUser = async (auth, email, password) => {
   return await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
