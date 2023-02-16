@@ -17,7 +17,7 @@ const About = () => {
      <Nav token={user?.length? user : null}/>
     <div className="bg-zinc-800  sm:h-[100vh] flex xl:flex-row  flex-col items-start justify-evenly gap-2 ">
      
-      <div className="lg:ml-32 lg:mt-12 xl:w-2/6   ">
+      <div className="lg:ml-16 lg:mt-12 xl:w-2/6  ">
         <h2 className="text-white text-xl ml-6">
           Para utilizar la aplicación debes:
         </h2>
@@ -36,7 +36,7 @@ const About = () => {
         </ol>
           </div>
           <div className="xl:flex items-center  justify-center   xl:w-2/6  mt-12 hidden">
-              <img src={logo} className="w-32 h-48  rounded-lg ml-36   object-contain min-h-0" alt="Santa_ines_logo" />
+              <img src={logo} className="w-32 h-48  rounded-lg ml-36 object-contain min-h-0" alt="Santa_ines_logo" />
           </div>
       <div className="lg:ml-32 lg:mt-12 xl:w-3/6 lg:mr-12 ">
         <h2 className="text-white text-xl ml-6 ">A tener en cuenta:</h2>

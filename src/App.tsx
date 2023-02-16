@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import Nav from "./components/nav/Nav";
 import "./appStyles/index.css";
 import {checkUser, auth, } from "./firebase-config.js";
+import BounceLoader from "react-spinners/BounceLoader";
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
   };
 
 const navigate= useNavigate();
-
+const [beLogged,setBeLogged]=useState(false);
 const [error,setError]= useState("");
 const [user,setUser]=useState({
   username:"",
@@ -25,7 +26,7 @@ useEffect(()=>{
 },[])
 
  const logUser= async ( {username, password}: User)=>{
-  
+  setBeLogged(true);
   if(!username || !password) return setError("Ingrese las credenciales")
    const access= await checkUser(auth, username, password); 
   if(Array.isArray(access)) return setError("Datos ingresados incorrectos") 
@@ -45,7 +46,13 @@ const handleChange= (e:  React.ChangeEvent<HTMLInputElement>)=>{
     <div className="h-[100vh] mt-12  flex flex-col items-center justify-start">
        <div className="md:min-h-min max-md:h-auto w-1/3 mt-16 max-md:mt-0  max-md:w-3/4 max-md:h-96 flex flex-col items-center justify-center gap-6 p-2 py-4 bg-zinc-600 border-4 text-white border rounded-lg">
             <h1 className="text-2xl  mb-10">Inicia sesión para continuar</h1>
-          
+            <BounceLoader
+          loading={beLogged}
+          color="#ffffff"
+          size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
             <div className=" mb-8 h-60 flex flex-col items-center justify-around">
             <div className="flex flex-col gap-6">
               <label htmlFor="username" >Usuario</label>
@@ -66,3 +73,15 @@ const handleChange= (e:  React.ChangeEvent<HTMLInputElement>)=>{
 }
 
 export default App;
+
+
+/*      <BounceLoader
+          loading={beLogged}
+          color="#ffffff"
+          cssOverride={override}
+          size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+      
+*/
