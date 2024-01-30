@@ -34,6 +34,7 @@ export default function Cupon( {cupons}: cupons  ) {
 
   const getDate=(isAhead: boolean)=>{
     const date = new Date();
+    date.setDate(10);
     if(isAhead) date.setMonth(date.getMonth() + 1); // one month ahead
   
     const formatFullDate = date.toLocaleDateString("es-AR", {
